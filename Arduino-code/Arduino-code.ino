@@ -2,6 +2,13 @@
 
 Adafruit_INA228 ina228 = Adafruit_INA228();
 
+// setup to create a rolling array
+int chargeTime[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+int oldestIndex = 0;
+int sizeOfArray = 9;
+int sum = 0;
+
+
 void setup() {
   // put your setup code here, to run once:
 
@@ -94,6 +101,7 @@ void setup() {
   // default polarity for the alert is low on ready, but
   // it can be inverted!
   // ina228.setAlertPolarity(1);
+
 }
 
 void loop() {
@@ -144,6 +152,23 @@ void loop() {
   // Serial.print(ina228.readDieTemp());
   // Serial.println(" *C");
 
+
+  // chargeTime[oldestIndex] = ina228.getCurrent_mA();
+
+  // oldestIndex ++;
+  // if(oldestIndex == 9){
+  //   oldestIndex = 0;
+  // }
+
+  for (int i = 0; i < sizeOfArray; i++){
+    sum = sum + chargeTime[i];
+  }
+
+  // After the first pass, sum hold the correct value, that is good.
+
+  Serial.print("Sum of total elements of an array:") ;
+  Serial.print(sum) ;
+  
   Serial.println();
   delay(1000);
 
