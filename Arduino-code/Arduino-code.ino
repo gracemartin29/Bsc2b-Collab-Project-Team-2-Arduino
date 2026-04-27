@@ -5,7 +5,7 @@ Adafruit_INA228 ina228 = Adafruit_INA228();
 // setup to create a rolling array
 int chargeTime[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 int oldestIndex = 0;
-int sizeOfArray = 9;
+int sizeOfArray = 10;
 int sum = 0;
 
 
@@ -160,14 +160,14 @@ void loop() {
   //   oldestIndex = 0;
   // }
 
+  sum = 0;
+
   for (int i = 0; i < sizeOfArray; i++){
     sum = sum + chargeTime[i];
   }
 
-  // After the first pass, sum hold the correct value, that is good.
-
-  Serial.print("Sum of total elements of an array:") ;
-  Serial.print(sum) ;
+  Serial.print("Sum of total elements of an array:");
+  Serial.print(sum);
   
   Serial.println();
   delay(1000);
