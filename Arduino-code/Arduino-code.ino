@@ -1,12 +1,9 @@
 #include <Adafruit_INA228.h>
+#include "Queue.h"
 
 Adafruit_INA228 ina228 = Adafruit_INA228();
 
-// setup to create a rolling array
-int chargeTime[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-int oldestIndex = 0;
-int sizeOfArray = 10;
-int sum = 0;
+Queue ArduinoInput;
 
 
 void setup() {
@@ -151,20 +148,7 @@ void loop() {
   // Serial.print("Temperature: ");
   // Serial.print(ina228.readDieTemp());
   // Serial.println(" *C");
-
-
-  // chargeTime[oldestIndex] = ina228.getCurrent_mA();
-
-  // oldestIndex ++;
-  // if(oldestIndex == 9){
-  //   oldestIndex = 0;
-  // }
-
-  sum = 0;
-
-  for (int i = 0; i < sizeOfArray; i++){
-    sum = sum + chargeTime[i];
-  }
+ 
 
   Serial.print("Sum of total elements of an array:");
   Serial.print(sum);
