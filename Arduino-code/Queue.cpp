@@ -11,9 +11,10 @@ void Queue::pushAndPop(float input){
 }
 
 
-float Queue::getAverage(float result){
+float Queue::getAverage(){
 
   float temp = 0.0;
+  float result = 0.0;
 
   for(int i = 0; i < 10; i++){
     temp = temp + latestValues[i];

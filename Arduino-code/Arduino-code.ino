@@ -116,9 +116,9 @@ void loop() {
   // while (!ina228.conversionReady())
   //  delay(1);
 
-  Serial.print("Current: ");
-  Serial.print(ina228.getCurrent_mA());
-  Serial.println(" mA");
+  // Serial.print("Current: ");
+  // Serial.print(ina228.getCurrent_mA());
+  // Serial.println(" mA");
 
   //Averaging of current values
 
@@ -150,10 +150,28 @@ void loop() {
   // Serial.println(" *C");
  
 
-  Serial.print("Sum of total elements of an array:");
-  Serial.print(sum);
+  ArduinoInput.pushAndPop(ina228.getCurrent_mA());
+
+  Serial.print("Current: ");
+  Serial.print(ArduinoInput.getAverage());
+  Serial.println(" mA");
+
+  Serial.print("Time to fully charge: ");
+
+  if(ArduinoInput.getAverage() > 0.0){
+    Serial.print(0.5 / ArduinoInput.getAverage());
+    Serial.println(" hours");
+  }
+
+  if(ArduinoInput.getAverage() <= 0.0){
+    Serial.print("not charging");
+    Serial.println();
+  }
   
   Serial.println();
   delay(1000);
+
+
+
 
 }
