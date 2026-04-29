@@ -1,5 +1,6 @@
 #include "Queue.h"
 
+//takes an input and replaces oldest value in queue with the input
 void Queue::pushAndPop(float input){
 
   for(int i = 0; i < 9; i++){
@@ -10,7 +11,7 @@ void Queue::pushAndPop(float input){
 
 }
 
-
+// takes 10 latest values, adds them together, and divides by 10 to find the average
 float Queue::getAverage(){
 
   float temp = 0.0;
@@ -21,8 +22,6 @@ float Queue::getAverage(){
   }
 
   result = temp / 10;
-
   return result;
-
 
 }

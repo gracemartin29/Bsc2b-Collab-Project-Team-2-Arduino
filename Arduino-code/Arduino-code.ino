@@ -102,7 +102,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
   // Print reading of battery
   // Serial.print("Battery S2: ");
@@ -119,10 +118,6 @@ void loop() {
   // Serial.print("Current: ");
   // Serial.print(ina228.getCurrent_mA());
   // Serial.println(" mA");
-
-  //Averaging of current values
-
-  //Calculating time left to charge the battery fully -- send to app
 
   // Serial.print("Bus Voltage: ");
   // Serial.print(ina228.getBusVoltage_V());
@@ -149,20 +144,23 @@ void loop() {
   // Serial.print(ina228.readDieTemp());
   // Serial.println(" *C");
  
-
+//takes the latest current measurement taken by the ina228 and adds it to the queue
   ArduinoInput.pushAndPop(ina228.getCurrent_mA());
 
+//outputs the average current
   Serial.print("Current: ");
   Serial.print(ArduinoInput.getAverage());
   Serial.println(" mA");
 
   Serial.print("Time to fully charge: ");
 
+//if current is detected calculate how long it will take the battery to fully charge
   if(ArduinoInput.getAverage() > 0.0){
     Serial.print(0.5 / ArduinoInput.getAverage());
     Serial.println(" hours");
   }
 
+//if no current is detected let the user know the battery is not charging
   if(ArduinoInput.getAverage() <= 0.0){
     Serial.print("not charging");
     Serial.println();

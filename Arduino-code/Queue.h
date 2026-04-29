@@ -1,6 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+//class to calculate average current out of latest 10 readings
 class Queue{
 
 private:
